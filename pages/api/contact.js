@@ -31,7 +31,7 @@ const mailer = ({ nome, phone, curso }) => {
 
   const message = {
     from,
-    to: 'cebrac.mt.2022@gmail.com',
+    to: email,
     subject: `Nova mensagem de contato - ${nome}`,
     text: `
       Nome: ${nome}\n
