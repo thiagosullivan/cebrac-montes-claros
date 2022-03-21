@@ -25,7 +25,7 @@ function Header() {
     const scrollTop = window.scrollY;
     scrollTop >= 28 ? headerMenu.classList.add('is-sticky') : headerMenu.classList.remove('is-sticky');
   }
-
+ 
   return (
     <HeaderContainer>
       <TopHead>
