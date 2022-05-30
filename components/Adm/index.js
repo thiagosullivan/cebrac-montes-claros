@@ -15,7 +15,7 @@ function Adm() {
   return (
     <AdmContainer id="adm">
       <TitleClass
-        title="Assistente Completo Administrativo"
+        title="Assistente Administrativo Completo"
         imageUrl={admLogo}
         classCss="title__adm"
       />

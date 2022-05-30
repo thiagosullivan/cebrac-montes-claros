@@ -14,7 +14,7 @@ function Pbb() {
   return (
     <PbbContainer id="pbb">
       <TitleClass
-        title="Profissional da Beleza e Bem Estar"
+        title="Profissional de Beleza e Bem Estar"
         imageUrl={pbbLogo}
         classCss="title__pbb"
       />
