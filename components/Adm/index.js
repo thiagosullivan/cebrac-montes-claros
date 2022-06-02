@@ -9,8 +9,22 @@ import admLogo from '../../assets/adm-logo_1.jpg'
 import RowClass from '../rowClass';
 import ClassBottomInfos from '../classBottomInfos';
 import RowClassBottom from '../rowClassBottom';
+import YouTube, { YouTubeProps } from 'react-youtube';
 
 function Adm() {
+
+  const onPlayerReady = (event) => {
+    event.target.pauseVideo();
+  } 
+
+  const opts = {
+    height: '315',
+    width: '500',
+    playerVars: {
+      // https://developers.google.com/youtube/player_parameters
+      autoplay: 0,
+    },
+  };
 
   return (
     <AdmContainer id="adm">
@@ -26,13 +40,12 @@ function Adm() {
             mercado de trabalho.</p>
             <p>Conheça mais <span>sobre o curso</span></p>
             <p>Com o CEBRAC no currículo é assim: você mais perto do mercado de trabalho e da realização dos seus sonhos. O CEBRAC conta com educadores especializados e uma metodologia de ensino diferenciada, garantindo uma formação pessoal e profissional de qualidade.</p>
-          </AsideImage>
-          <div className='class_iframe'>
-            <iframe width="500" height="315" src="https://www.youtube.com/embed/NUmMznITN8A" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
-          </div>
-          <div className='class_iframe_mobile'>
-            <iframe width="300" height="189" src="https://www.youtube.com/embed/NUmMznITN8A" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
-          </div>
+          </AsideImage>        
+          <YouTube
+            videoId="mYvB5o6U0I4"
+            opts={opts}
+            onReady={onPlayerReady}
+          />
         </AsideClass>
         <div className='class__container__info'>
           <div className='subtitle__adm'>
