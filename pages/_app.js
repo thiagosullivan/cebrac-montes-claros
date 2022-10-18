@@ -1,30 +1,34 @@
+import React from 'react';
+import Router from 'next/router';
 import { ThemeProvider } from 'styled-components';
 import theme from '../styles/theme';
 import { Toaster } from 'react-hot-toast';
 import '../styles/globals.css';
 import Script from 'next/script';
 
+function FacebookPixel() {
+  React.useEffect(() => {
+    import("react-facebook-pixel")
+      .then((x) => x.default)
+      .then((ReactPixel) => {
+        ReactPixel.init('293052318402482');
+        ReactPixel.pageView();
+
+        Router.events.on("routeChangeComplete", () => {
+          ReactPixel.pageView();
+        });
+      });
+  });
+  return null;
+}
+
 function MyApp({ Component, pageProps }) {
 
-  const FB_PIXEL = process.env.PIXEL_FB;
+  // const FB_PIXEL = process.env.PIXEL_FB;
   const GA_ID = process.env.NEXT_PUBLIC_GA_ID;
 
   return (
     <>
-      <Script id="facebook-pixel">
-        {`
-          !function(f,b,e,v,n,t,s)
-          {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-          n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-          if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-          n.queue=[];t=b.createElement(e);t.async=!0;
-          t.src=v;s=b.getElementsByTagName(e)[0];
-          s.parentNode.insertBefore(t,s)}(window, document,'script',
-          'https://connect.facebook.net/en_US/fbevents.js');
-          fbq('init', '${FB_PIXEL}');
-          fbq('track', 'PageView');
-        `}
-      </Script>
       <Script
         strategy='lazyOnload'
         id='GA-scriptOne'
@@ -42,6 +46,7 @@ function MyApp({ Component, pageProps }) {
           gtag('config', '${GA_ID}');
         `}
       </Script>
+      <FacebookPixel />
       <ThemeProvider theme={theme}>
         <Toaster position="bottom-right" />
         <Component {...pageProps} />    
